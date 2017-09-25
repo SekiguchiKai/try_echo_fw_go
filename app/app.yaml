@@ -1,0 +1,29 @@
+module: default
+version: 1.0
+runtime: go
+api_version: go1
+
+
+handlers:
+- url: /(.+\.html)$
+  static_files: \1
+  upload: .+\.html$
+  application_readable: true
+
+- url: /(.+\.js\.map)$
+  static_files: \1
+  upload: .+\.js\.map$
+  application_readable: true
+  mime_type: application/json
+
+- url: /(.+\.css\.map)$
+  static_files: \1
+  upload: .+\.css\.map$
+  application_readable: true
+  mime_type: application/json
+
+- url: /dist
+  static_dir: dist
+
+  - url: /.*
+    script: _go_app
